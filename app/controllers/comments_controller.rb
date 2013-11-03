@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_filter :require_login, except: [:create]
+
   def create
     data = comment_params.merge(article_id: params[:article_id])
     @comment = Comment.create(data)
